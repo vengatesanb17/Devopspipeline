@@ -17,7 +17,7 @@ steps:
     azureSubscription: 'vengat-sc-devops'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az login'
+    inlineScript: 'az login --use-device-code'
 
 - task: AzureCLI@2
   inputs:
