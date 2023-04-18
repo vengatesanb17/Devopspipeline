@@ -7,11 +7,6 @@ pool:
 steps:  
 - script: |
 
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-#     script: 'Invoke-AzVMRunCommand -ResourceGroupName ''vengat-sc-devops'' -Name ''demoVM2'' -CommandId ''RunPowerShellScript'' -ScriptPath ''C:\agent\run.cmd'''
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'vengat-sc-devops'
