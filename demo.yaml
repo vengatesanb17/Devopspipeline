@@ -8,11 +8,11 @@ steps:
 - script: |
 - task: PowerShellOnTargetMachines@3
   inputs:
-    Machines: 'demoVM2'
+    Machines: 'demoVM3'
     UserName: 'vengatesan'
     UserPassword: 'Vengatesan17@'
     InlineScript: '& $env:AGENT_HOMEDIRECTORY\config.cmd remove --unattended --auth pat --token vh7ruudhdkdj474kd5p257lidlukvj5de37cuutf25djeeimh7jq'
-    CommunicationProtocol: 'Http'
+    CommunicationProtocol: 'Https'
 
 - task: PowerShell@2
   inputs:
