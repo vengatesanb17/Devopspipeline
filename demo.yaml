@@ -72,3 +72,4 @@ steps:
     vmImage: 'ubuntu-latest'
     adminUserName: 'vengatesan' # Replace with your admin username
     adminPassword: 'Vengatesan17@' # Replace with a reference to a secret variable for your admin password
+    
