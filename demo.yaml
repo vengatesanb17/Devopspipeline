@@ -28,7 +28,7 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: 'az vm start --name demoVM2 --resource-group demoVM2_group'
 
-- task: AzureCLI@1
+- task: InstallPipelineAgent@2
   inputs:
     azureSubscription: '0f5caf29-b4f6-44c1-8411-73a47f4c19c6'
     agentPoolName: 'Default'
