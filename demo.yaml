@@ -43,3 +43,4 @@ steps:
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: 'az vm run-command invoke -g demoVM2_group -n demoVM2 --command-id RunShellScript --script-path C:\agent\run.cmd'
+    
