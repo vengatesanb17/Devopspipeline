@@ -12,27 +12,6 @@ steps:
     azureSubscription: 'vengat-sc-devops'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az login --use-device-code'
-
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'vengat-sc-devops'
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az account set --subscription 0f5caf29-b4f6-44c1-8411-73a47f4c19c6'
-
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'vengat-sc-devops'
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az vm start --name demoVM2 --resource-group demoVM2_group'
-
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'vengat-sc-devops'
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
     inlineScript: az vm run-command create --resource-group "demoVM2_group" --location "eastus" --async-execution false --run-as-password "Vengatesan17@" --run-as-user "vengatesan" --script "C:\agent\run.cmd" --timeout-in-seconds 3600 --run-command-name ".\run.cmd" --vm-name "demoVM2"
     agentPoolName: 'Default'
     agentName: 'demoVM2'
