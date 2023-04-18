@@ -12,7 +12,7 @@ steps:
     azureSubscription: 'vengat-sc-devops'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: az vm run-command create --resource-group "demoVM2_group" --location "eastus" --run-as-password "Vengatesan17@" --run-as-user "vengatesan" --script "C:\agent\run.cmd" --run-command-name ".\run.cmd" --vm-name "demoVM2"
+    inlineScript: az vm run-command invoke --resource-group "demoVM2_group" --location "eastus" --run-as-password "Vengatesan17@" --run-as-user "vengatesan" --script "C:\agent\run.cmd" --run-command-name ".\run.cmd" --vm-name "demoVM2"
     agentPoolName: 'Default'
     agentName: 'demoVM2'
     vmImage: 'ubuntu-latest'
