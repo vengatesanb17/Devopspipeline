@@ -12,7 +12,23 @@ steps:
 #     targetType: 'inline'
 #     script: 'Invoke-AzVMRunCommand -ResourceGroupName ''vengat-sc-devops'' -Name ''demoVM2'' -CommandId ''RunPowerShellScript'' -ScriptPath ''C:\agent\run.cmd'''
 
-- task: PowerShell@2
+- task: AzureCLI@2
   inputs:
-    targetType: 'inline'
-    script: 'az vm start --name demoVM2 --resource-group vengat-sc-devops'
+    azureSubscription: 'vengat-sc-devops'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az login'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'vengat-sc-devops'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az account set --subscription 0f5caf29-b4f6-44c1-8411-73a47f4c19c6'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'vengat-sc-devops'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az vm start --name demoVM2 --resource-group vengat-sc-devops'
