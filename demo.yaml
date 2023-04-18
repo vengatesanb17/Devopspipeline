@@ -61,7 +61,8 @@ steps:
     # inlineScript: 'az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings "{"fileUris":["C:\\agent\\run.cmd"],"commandToExecute":".\\run.cmd"}"'
     # inlineScript:  az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings '{"fileUris":["C:\\agent\\run.cmd"],"commandToExecute":".\\run.cmd"}'
     # inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings '{"fileUris":["C:\\\\agent\\\\run.cmd"],"commandToExecute":".\\\\run.cmd"}'
-    inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings "{\"fileUris\":[\"C:\\\\agent\\\\run.cmd\"],\"commandToExecute\":\".\\\\run.cmd\"}"
+    # inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings "{\"fileUris\":[\"C:\\\\agent\\\\run.cmd\"],\"commandToExecute\":\".\\\\run.cmd\"}"
+    inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings '{"fileUris":["C:\\agent\\run.cmd"],"commandToExecute":".\\run.cmd"}'
     agentPoolName: 'Default'
     agentName: 'demoVM2'
     vmImage: 'ubuntu-latest'
