@@ -1,0 +1,15 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:  
+- script: |
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'vengat-sc-devops'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'Set-AzVMRunCommand -ResourceGroupName "vengat-sc-devops" -VMName "demoVM2" -Location "EastUS" -RunCommandName "RunCommandName" -FilePath "C:\agent\run.cmd"'
