@@ -19,15 +19,22 @@ steps:
 #     # adminUserName: 'vengatesan' # Replace with your admin username
 #     # adminPassword: 'Vengatesan17@' # Replace with a reference to a secret variable for your admin password
 
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'vengat-sc-devops'
+#     scriptType: 'ps'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'az vm run-command list --resource-group demoVM2_group --name demoVM2'
+# # - task: AzureCLI@2
+# #   inputs:
+# #     azureSubscription: 'vengat-sc-devops'
+# #     scriptType: 'pscore'
+# #     scriptLocation: 'inlineScript'
+# #     inlineScript: 'az vm run-command invoke  --command-id RunPowerShellScript --name demoVM2 -g demoVM2_group --scripts ''C:\agent\run.cmd''
+
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'vengat-sc-devops'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: 'az vm run-command list --resource-group demoVM2_group --name demoVM2'
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'vengat-sc-devops'
-#     scriptType: 'pscore'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: 'az vm run-command invoke  --command-id RunPowerShellScript --name demoVM2 -g demoVM2_group --scripts ''C:\agent\run.cmd'''
