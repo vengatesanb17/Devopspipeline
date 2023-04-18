@@ -7,38 +7,12 @@ pool:
 steps:  
 - script: |
 
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: 'Invoke-AzVMRunCommand -ResourceGroupName ''vengat-sc-devops'' -Name ''demoVM2'' -CommandId ''RunPowerShellScript'' -ScriptPath ''C:\agent\run.cmd'''
+
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'Invoke-AzVMRunCommand -ResourceGroupName ''vengat-sc-devops'' -Name ''demoVM2'' -CommandId ''RunPowerShellScript'' -ScriptPath ''C:\agent\run.cmd'''
-
-# - task: PowerShellOnTargetMachines@3
-#   inputs:
-#     Machines: 'demoVM3'
-#     UserName: 'vengatesan'
-#     UserPassword: 'Vengatesan17@'
-#     InlineScript: '& $env:AGENT_HOMEDIRECTORY\config.cmd remove --unattended --auth pat --token vh7ruudhdkdj474kd5p257lidlukvj5de37cuutf25djeeimh7jq'
-#     CommunicationProtocol: 'Https'
-
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-#     script: '& $env:AGENT_HOMEDIRECTORY\config.cmd --unattended --url https://dev.azure.com/KVMF --auth pat --token 6huknlelim3nmgjly622litt2px2fhq26bkweozubejhliqispsa --pool Default --agent demoVM2 --replace --runAsService'
-
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'vengat-sc-devops'
-#     scriptType: 'ps'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: 'Set-AzVMRunCommand -ResourceGroupName "vengat-sc-devops" -VMName "demoVM2" -Location "EastUS" -RunCommandName "RunCommandName" -FilePath "C:\agent\run.cmd"'
-
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'vengat-sc-devops'
-#     scriptType: 'ps'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: 'D:\Sample'
-# #     script: 'New-Item -Path ''D:\Sample'' -ItemType Directory'
+    script: 'az vm start --name demoVM2 --resource-group vengat-sc-devops'
