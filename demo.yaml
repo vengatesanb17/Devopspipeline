@@ -31,4 +31,4 @@ steps:
     azureSubscription: 'vengat-sc-devops'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az vm start --name demoVM2 --resource-group vengat-sc-devops'
+    inlineScript: 'az vm start --name demoVM2 --resource-group demoVM2_group'
