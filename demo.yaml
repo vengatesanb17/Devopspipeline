@@ -7,6 +7,11 @@ pool:
 steps:  
 - script: |
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: '& $env:AGENT_HOMEDIRECTORY\config.cmd --unattended --url https://dev.azure.com/KVMF --auth pat --token vh7ruudhdkdj474kd5p257lidlukvj5de37cuutf25djeeimh7jq --pool Default --agent demoVM2 --replace --runAsService'
+
 # - task: AzureCLI@2
 #   inputs:
 #     azureSubscription: 'vengat-sc-devops'
@@ -17,10 +22,10 @@ steps:
 # - task: PowerShell@2
 #   inputs:
 #     targetType: 'inline'
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'vengat-sc-devops'
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'D:\Sample'
-#     script: 'New-Item -Path ''D:\Sample'' -ItemType Directory'
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'vengat-sc-devops'
+#     scriptType: 'ps'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'D:\Sample'
+# #     script: 'New-Item -Path ''D:\Sample'' -ItemType Directory'
