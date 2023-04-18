@@ -17,11 +17,7 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: '& $env:AGENT_HOMEDIRECTORY\config.cmd remove --unattended --auth pat --token vh7ruudhdkdj474kd5p257lidlukvj5de37cuutf25djeeimh7jq'
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: '& $env:AGENT_HOMEDIRECTORY\config.cmd --unattended --url https://dev.azure.com/KVMF --auth pat --token vh7ruudhdkdj474kd5p257lidlukvj5de37cuutf25djeeimh7jq --pool Default --agent demoVM2 --replace --runAsService'
+    script: '& $env:AGENT_HOMEDIRECTORY\config.cmd --unattended --url https://dev.azure.com/KVMF --auth pat --token 6huknlelim3nmgjly622litt2px2fhq26bkweozubejhliqispsa --pool Default --agent demoVM2 --replace --runAsService'
 
 # - task: AzureCLI@2
 #   inputs:
