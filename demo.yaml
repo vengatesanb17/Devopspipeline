@@ -64,7 +64,8 @@ steps:
     # inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings "{\"fileUris\":[\"C:\\\\agent\\\\run.cmd\"],\"commandToExecute\":\".\\\\run.cmd\"}"
     # inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings '{"fileUris":["C:\\agent\\run.cmd"],"commandToExecute":".\\run.cmd"}'
     # inlineScript: az vm run-command invoke --ids /subscriptions/0f5caf29-b4f6-44c1-8411-73a47f4c19c6/resourceGroups/demoVM2_group --command-id RunPowerShellScript --scripts "C:\agent\run.cmd"
-    inlineScript: az vm run-command invoke -g demoVM2_group -n demoVM2 --command-id RunShellScript --scripts "C:\agent\run.cmd"
+    # --linux CMD--inlineScript: az vm run-command invoke -g demoVM2_group -n demoVM2 --command-id RunShellScript --scripts "C:\agent\run.cmd"
+    inlineScript: az vm run-command invoke  --command-id RunPowerShellScript --name demoVM2 -g demoVM2_group --scripts 'C:\agent\run.cmd'
     agentPoolName: 'Default'
     agentName: 'demoVM2'
     vmImage: 'ubuntu-latest'
