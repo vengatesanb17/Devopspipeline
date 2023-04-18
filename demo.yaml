@@ -28,14 +28,14 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: 'az vm start --name demoVM2 --resource-group demoVM2_group'
 
-- task: InstallPipelineAgent@2
-  inputs:
-    azureSubscription: '0f5caf29-b4f6-44c1-8411-73a47f4c19c6'
-    agentPoolName: 'Default'
-    agentName: 'demoVM2'
-    vmImage: 'ubuntu-latest'
-    adminUserName: 'vengatesan' # Replace with your admin username
-    adminPassword: 'Vengatesan17@' # Replace with a reference to a secret variable for your admin password
+# - task: InstallPipelineAgent@2
+#   inputs:
+#     azureSubscription: '0f5caf29-b4f6-44c1-8411-73a47f4c19c6'
+#     agentPoolName: 'Default'
+#     agentName: 'demoVM2'
+#     vmImage: 'ubuntu-latest'
+#     adminUserName: 'vengatesan' # Replace with your admin username
+#     adminPassword: 'Vengatesan17@' # Replace with a reference to a secret variable for your admin password
 
 - task: AzureCLI@2
   inputs:
@@ -43,4 +43,9 @@ steps:
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: 'az vm run-command invoke -g demoVM2_group -n demoVM2 --command-id RunShellScript --script-path C:\agent\run.cmd'
-    
+    agentPoolName: 'Default'
+    agentName: 'demoVM2'
+    vmImage: 'ubuntu-latest'
+    adminUserName: 'vengatesan' # Replace with your admin username
+    adminPassword: 'Vengatesan17@' # Replace with a reference to a secret variable for your admin password
+
