@@ -6,9 +6,23 @@ pool:
 
 steps:  
 - script: |
-- task: AzureCLI@2
+- task: PowerShell@2
   inputs:
-    azureSubscription: 'vengat-sc-devops'
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az vm run-command invoke --command-id RunPowerShellScript --name demoVM2 --resource-group demoVM2_group --scripts "C:\agent\run.cmd"'
+    targetType: 'inline'
+    script: |
+      $resourceGroup = "demoVM2_group"
+      $vmName = "demoVM2"
+      $commandId = "RunCommandScript"
+      $scriptPath = "C:\agent\run.cmd"
+      
+      $scriptContent = Get-Content $scriptPath -Raw
+      $encodedScript = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($scriptContent))
+      
+      $commandParams = @{
+          "commandId" = $commandId
+          "script" = $encodedScript
+      }
+      
+      Set-AzVMCustomScriptExtension -ResourceGroupName $resourceGroup -VMName $vmName -Location "eastus" -Name "RunCustomScript" -TypeHandlerVersion "1.10" -FileUri "https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/CustomScriptExtension-1.10.4/CustomScriptLinux" -CommandParameter $commandParams
+      
+      Update-AzVM -ResourceGroupName $resourceGroup -VMName $vmName
