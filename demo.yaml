@@ -14,7 +14,7 @@ steps:
       $vmName = "demoVM2"
       $commandId = "RunCommandScript"
       $scriptPath = "cd C:\Users\vengatesan\agent"
-      $scriptPath = "run.cmd"
+      $scriptPath = ".\run.cmd"
       
       $scriptContent = Get-Content $scriptPath -Raw
       $encodedScript = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($scriptContent))
