@@ -11,4 +11,4 @@ steps:
     azureSubscription: 'vengat-sc-devops'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az vm run-command invoke --name ".\run.cmd" --vm-name "demoVM2" --resource-group "demoVM2_group" --script "C:\agent\run.cmd"'
+    inlineScript: 'az vm run-command invoke --command-id RunPowerShellScript --name demoVM2 --resource-group demoVM2_group --scripts "C:\agent\run.cmd"'
