@@ -6,22 +6,9 @@ pool:
 
 steps:  
 - script: |
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'vengat-sc-devops'
-#     scriptType: 'ps'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: 'az vm run-command invoke --resource-group "demoVM2_group" --location "eastus" --run-as-password "Vengatesan17@" --run-as-user "vengatesan" --script "C:\agent\run.cmd" --run-command-name ".\run.cmd" --vm-name "demoVM2"'
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'vengat-sc-devops'
-#     scriptType: 'ps'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: 'az vm run-command list --resource-group demoVM2_group --name demoVM2'
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'vengat-sc-devops'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az vm run-command create --name "myRunCommand" --vm-name "demoVM2" --resource-group "demoVM2_group" --script "C:\agent\run.cmd"'
+    inlineScript: 'az vm run-command invoke --name ".\run.cmd" --vm-name "demoVM2" --resource-group "demoVM2_group" --script "C:\agent\run.cmd"'
