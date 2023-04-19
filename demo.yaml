@@ -6,12 +6,17 @@ pool:
 
 steps:  
 - script: |
-- task: AzureCLI@2
+- task: PowerShell@2
   inputs:
-    azureSubscription: 'vengat-sc-devops'
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: az vm run-command invoke --resource-group demoVM2_group --name demoVM2 --command-id RunPowerShellScript --scripts "'C:\agent\run.cmd'"
+    targetType: 'inline'
+    script: 'Invoke-AzVMRunCommand -ResourceGroupName ''demoVM2_group'' -Name ''demoVM2'' -CommandId ''RunPowerShellScript'' -ScriptPath ''C:\agent\run.cmd'' -Parameter @{"arg1" = "var1";"arg2" = "var2"}'
+
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'vengat-sc-devops'
+#     scriptType: 'ps'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: az vm run-command invoke --resource-group demoVM2_group --name demoVM2 --command-id RunPowerShellScript --scripts "'C:\agent\run.cmd'"
 
 
 # - task: AzureCLI@2
