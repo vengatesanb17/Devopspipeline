@@ -6,6 +6,11 @@ pool:
 
 steps:  
 - script: |
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'az vm run-command invoke -g myResourceGroup -n demoVM2 --command-id RunPowerShellScript --scripts "@''C:\Users\vengatesan\Desktop\run-script.ps1''@"'
+
 # - task: PowerShell@2
 #   inputs:
 #     targetType: 'inline'
@@ -29,9 +34,9 @@ steps:
 #       Set-AzVMCustomScriptExtension -ResourceGroupName $resourceGroup -VMName $vmName -Location "eastus" -Name "RunCustomScript" -TypeHandlerVersion "1.10" -FileUri "https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/CustomScriptExtension-1.10.4/CustomScriptLinux" -CommandParameter $commandParams
       
 #       Update-AzVM -ResourceGroupName $resourceGroup -VMName $vmName
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'vengat-sc-devops'
-    scriptType: 'pscore'
-    scriptLocation: 'inlineScript'
-    inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings "fileUris":["C:\\Users\\vengatesan\\agent\\run.cmd"],"commandToExecute":".\\run.cmd
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'vengat-sc-devops'
+#     scriptType: 'pscore'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings "fileUris":["C:\\Users\\vengatesan\\agent\\run.cmd"],"commandToExecute":".\\run.cmd
