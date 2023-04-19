@@ -13,7 +13,7 @@ steps:
       $resourceGroup = "demoVM2_group"
       $vmName = "demoVM2"
       $commandId = "RunCommandScript"
-      $scriptPath = "cd C:\Users\vengatesan\agent\run.cmd"
+      $scriptPath = "C:\Users\vengatesan\agent\run.cmd"
       Invoke-Expression $scriptPath
 
       
