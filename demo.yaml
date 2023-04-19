@@ -16,7 +16,7 @@ steps:
       $command = "New-Item -ItemType Directory -Path C:\agent\run.cmd"
       
       # Authenticate with Azure and select the subscription to use
-      Set-AzContext -SubscriptionId 0f5caf29-b4f6-44c1-8411-73a47f4c19c6
+      # Set-AzContext -SubscriptionId 0f5caf29-b4f6-44c1-8411-73a47f4c19c6
       
       # Get the virtual machine object
       $vm = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vmName
