@@ -6,85 +6,93 @@ pool:
 
 steps:  
 - script: |
-- task: PowerShell@2
+
+- task: AzureCLI@2
   inputs:
-    targetType: 'inline'
-    script: |
-      # Variables
-      $resourceGroupName = "demoVM2_group"
-      $vmName = "demoVM2"
-      $command = "New-Item -ItemType Directory -Path C:\agent\run.cmd"
-      
-      # Authenticate with Azure and select the subscription to use
-      # Set-AzContext -SubscriptionId 0f5caf29-b4f6-44c1-8411-73a47f4c19c6
-      
-      # Get the virtual machine object
-      $vm = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vmName
-      
-      # Execute the command on the virtual machine
-      $result = Invoke-AzVMRunCommand -ResourceGroupName $resourceGroupName -VMName $vmName -CommandId 'RunPowerShellScript' -ScriptBlock $command
-      
-      # Output the result
-      $result.Value[0].Message
-
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-#     script: 'Invoke-AzVMRunCommand -ResourceGroupName ''demoVM2_group'' -Name ''demoVM2'' -CommandId ''RunPowerShellScript'' -ScriptPath ''C:\agent\run.cmd'' -Parameter @{"arg1" = "var1";"arg2" = "var2"}'
-
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'vengat-sc-devops'
-#     scriptType: 'ps'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: az vm run-command invoke --resource-group demoVM2_group --name demoVM2 --command-id RunPowerShellScript --scripts "'C:\agent\run.cmd'"
-
-
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'vengat-sc-devops'
-#     scriptType: 'ps'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: 'az vm run-command invoke --resource-group demoVM2_group --name demoVM2 --command-id RunPowerShellScript --scripts "powershell.exe -Command & ''C:\agent\run.cmd''"'
-
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'vengat-sc-devops'
-#     scriptType: 'ps'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: 'az vm run-command invoke -g demoVM2_group -n demoVM2 --command-id RunPowerShellScript $cmdPath = @' C:\Users\vengatesan\agent\run.cmd' Start-Process $cmdPath
-
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-#     script: 'az vm run-command invoke -g myResourceGroup -n demoVM2 --command-id RunPowerShellScript --scripts "@''C:\agent\run.cmd''@"'
+    azureSubscription: 'vengat-sc-devops'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az vm run-command invoke  --command-id RunPowerShellScript --name demoVM2 -g demoVM2_group --scripts ''C:\agent\run.cmd'''
 
 # - task: PowerShell@2
 #   inputs:
 #     targetType: 'inline'
 #     script: |
-#       $resourceGroup = "demoVM2_group"
+#       # Variables
+#       $resourceGroupName = "demoVM2_group"
 #       $vmName = "demoVM2"
-#       $commandId = "RunCommandScript"
-#       $scriptPath = "cd C:\Users\vengatesan\agent"
-#       $scriptPath = "start /wait run.cmd"
-#       # Invoke-Expression $scriptPath
+#       $command = "New-Item -ItemType Directory -Path C:\agent\run.cmd"
+      
+#       # Authenticate with Azure and select the subscription to use
+#       # Set-AzContext -SubscriptionId 0f5caf29-b4f6-44c1-8411-73a47f4c19c6
+      
+#       # Get the virtual machine object
+#       $vm = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vmName
+      
+#       # Execute the command on the virtual machine
+#       $result = Invoke-AzVMRunCommand -ResourceGroupName $resourceGroupName -VMName $vmName -CommandId 'RunPowerShellScript' -ScriptBlock $command
+      
+#       # Output the result
+#       $result.Value[0].Message
+
+# # - task: PowerShell@2
+# #   inputs:
+# #     targetType: 'inline'
+# #     script: 'Invoke-AzVMRunCommand -ResourceGroupName ''demoVM2_group'' -Name ''demoVM2'' -CommandId ''RunPowerShellScript'' -ScriptPath ''C:\agent\run.cmd'' -Parameter @{"arg1" = "var1";"arg2" = "var2"}'
+
+# # - task: AzureCLI@2
+# #   inputs:
+# #     azureSubscription: 'vengat-sc-devops'
+# #     scriptType: 'ps'
+# #     scriptLocation: 'inlineScript'
+# #     inlineScript: az vm run-command invoke --resource-group demoVM2_group --name demoVM2 --command-id RunPowerShellScript --scripts "'C:\agent\run.cmd'"
+
+
+# # - task: AzureCLI@2
+# #   inputs:
+# #     azureSubscription: 'vengat-sc-devops'
+# #     scriptType: 'ps'
+# #     scriptLocation: 'inlineScript'
+# #     inlineScript: 'az vm run-command invoke --resource-group demoVM2_group --name demoVM2 --command-id RunPowerShellScript --scripts "powershell.exe -Command & ''C:\agent\run.cmd''"'
+
+# # - task: AzureCLI@2
+# #   inputs:
+# #     azureSubscription: 'vengat-sc-devops'
+# #     scriptType: 'ps'
+# #     scriptLocation: 'inlineScript'
+# #     inlineScript: 'az vm run-command invoke -g demoVM2_group -n demoVM2 --command-id RunPowerShellScript $cmdPath = @' C:\Users\vengatesan\agent\run.cmd' Start-Process $cmdPath
+
+# # - task: PowerShell@2
+# #   inputs:
+# #     targetType: 'inline'
+# #     script: 'az vm run-command invoke -g myResourceGroup -n demoVM2 --command-id RunPowerShellScript --scripts "@''C:\agent\run.cmd''@"'
+
+# # - task: PowerShell@2
+# #   inputs:
+# #     targetType: 'inline'
+# #     script: |
+# #       $resourceGroup = "demoVM2_group"
+# #       $vmName = "demoVM2"
+# #       $commandId = "RunCommandScript"
+# #       $scriptPath = "cd C:\Users\vengatesan\agent"
+# #       $scriptPath = "start /wait run.cmd"
+# #       # Invoke-Expression $scriptPath
 
       
-#       $scriptContent = Get-Content $scriptPath -Raw
-#       $encodedScript = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($scriptContent))
+# #       $scriptContent = Get-Content $scriptPath -Raw
+# #       $encodedScript = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($scriptContent))
       
-#       $commandParams = @{
-#           "commandId" = $commandId
-#           "script" = $encodedScript
-#       }
+# #       $commandParams = @{
+# #           "commandId" = $commandId
+# #           "script" = $encodedScript
+# #       }
       
-#       Set-AzVMCustomScriptExtension -ResourceGroupName $resourceGroup -VMName $vmName -Location "eastus" -Name "RunCustomScript" -TypeHandlerVersion "1.10" -FileUri "https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/CustomScriptExtension-1.10.4/CustomScriptLinux" -CommandParameter $commandParams
+# #       Set-AzVMCustomScriptExtension -ResourceGroupName $resourceGroup -VMName $vmName -Location "eastus" -Name "RunCustomScript" -TypeHandlerVersion "1.10" -FileUri "https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/CustomScriptExtension-1.10.4/CustomScriptLinux" -CommandParameter $commandParams
       
-#       Update-AzVM -ResourceGroupName $resourceGroup -VMName $vmName
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'vengat-sc-devops'
-#     scriptType: 'pscore'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings "fileUris":["C:\\Users\\vengatesan\\agent\\run.cmd"],"commandToExecute":".\\run.cmd
+# #       Update-AzVM -ResourceGroupName $resourceGroup -VMName $vmName
+# # - task: AzureCLI@2
+# #   inputs:
+# #     azureSubscription: 'vengat-sc-devops'
+# #     scriptType: 'pscore'
+# #     scriptLocation: 'inlineScript'
+# #     inlineScript: az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings "fileUris":["C:\\Users\\vengatesan\\agent\\run.cmd"],"commandToExecute":".\\run.cmd
