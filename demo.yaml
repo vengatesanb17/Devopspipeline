@@ -6,26 +6,32 @@ pool:
 
 steps:  
 - script: |
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      $resourceGroup = "demoVM2_group"
-      $vmName = "demoVM2"
-      $commandId = "RunCommandScript"
-      $scriptPath = "cd C:\Users\vengatesan\agent"
-      $scriptPath = "start /wait run.cmd"
-      # Invoke-Expression $scriptPath
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       $resourceGroup = "demoVM2_group"
+#       $vmName = "demoVM2"
+#       $commandId = "RunCommandScript"
+#       $scriptPath = "cd C:\Users\vengatesan\agent"
+#       $scriptPath = "start /wait run.cmd"
+#       # Invoke-Expression $scriptPath
 
       
-      $scriptContent = Get-Content $scriptPath -Raw
-      $encodedScript = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($scriptContent))
+#       $scriptContent = Get-Content $scriptPath -Raw
+#       $encodedScript = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($scriptContent))
       
-      $commandParams = @{
-          "commandId" = $commandId
-          "script" = $encodedScript
-      }
+#       $commandParams = @{
+#           "commandId" = $commandId
+#           "script" = $encodedScript
+#       }
       
-      Set-AzVMCustomScriptExtension -ResourceGroupName $resourceGroup -VMName $vmName -Location "eastus" -Name "RunCustomScript" -TypeHandlerVersion "1.10" -FileUri "https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/CustomScriptExtension-1.10.4/CustomScriptLinux" -CommandParameter $commandParams
+#       Set-AzVMCustomScriptExtension -ResourceGroupName $resourceGroup -VMName $vmName -Location "eastus" -Name "RunCustomScript" -TypeHandlerVersion "1.10" -FileUri "https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/CustomScriptExtension-1.10.4/CustomScriptLinux" -CommandParameter $commandParams
       
-      Update-AzVM -ResourceGroupName $resourceGroup -VMName $vmName
+#       Update-AzVM -ResourceGroupName $resourceGroup -VMName $vmName
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'vengat-sc-devops'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az vm extension set --resource-group demoVM2_group --vm-name demoVM2 --name CustomScriptExtension --publisher Microsoft.Compute --version 1.9 --settings ''{"fileUris":["C:\\agent\\run.cmd"],"commandToExecute":".\\run.cmd"}'''
