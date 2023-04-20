@@ -9,6 +9,4 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: |
-      # Start the self-hosted agent
-      New-Item -Path 'D:\agent\Sample' -ItemType Directory
+    script: 'New-Item -Path ''D:\agent\Sample'' -ItemType Directory'
