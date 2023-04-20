@@ -8,7 +8,7 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'filePath'
-    filePath: 'D:\agent\vengat.ps1'
+    filePath: 'D:\agent\run.cmd'
     # arguments: '-param1 value1 -param2 value2'
     # workingDirectory: 'D:\agent\vengat.ps1'
 
