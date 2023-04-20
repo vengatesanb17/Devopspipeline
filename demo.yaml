@@ -2,17 +2,14 @@ trigger:
   - main
 
 pool:
-  name: Default
+  vmImage: 'windows-latest'
 
 steps:
 - task: DownloadPipelineArtifact@2
-#   inputs:
-#     artifactName: 'agentconfig'
-#     targetPath: '$(Pipeline.Workspace)/agentconfig'
-# - script: |
-#     cd $(Pipeline.Workspace)/agentconfig
-#     .\config.cmd --unattended --replace --url https://dev.azure.com/KVMF --auth pat --token zbqyoi6jmmfmotq6zkpf4aatbi2cx5c4ndm2slz6rgmwkafp4rmq --pool Default --agent demoVM2 --acceptTeeEula --work $(C:\agent\run.cmd)
-#   displayName: 'Configure agent'
+- script: |
+    cd $(Pipeline.Workspace)/agentconfig
+    .\config.cmd --unattended --replace --url https://dev.azure.com/KVMF --auth pat --token zbqyoi6jmmfmotq6zkpf4aatbi2cx5c4ndm2slz6rgmwkafp4rmq --pool Default --agent demoVM2 --acceptTeeEula --work $(C:\agent\run.cmd)
+  displayName: 'Configure agent'
 - script: |
     cd $(Agent.HomeDirectory)
     .\run.cmd
