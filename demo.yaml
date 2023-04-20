@@ -13,7 +13,6 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       New-Item -Path 'C:\Sample' -ItemType Directory
-            Set-Content -Path 'C:\Sample\sample.txt' -Value 'This is a sample text file created by Azure DevOps pipeline'
           azureSubscription: '0f5caf29-b4f6-44c1-8411-73a47f4c19c6'
           azurePowerShellVersion: 'LatestVersion'
           machineType: 'Windows'
