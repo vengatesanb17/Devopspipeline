@@ -6,12 +6,7 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- task: DownloadPipelineArtifact@2
-  inputs:
-    artifactName: 'agentconfig'
-    targetPath: '$(Pipeline.Workspace)\agentconfig'
 - powershell: |
-    cd $(Pipeline.Workspace)\agentconfig
     .\config.cmd --unattended --replace --url https://dev.azure.com/KVMF --auth pat --token 52sm2or2rvlle5y7eyidrwacz5urvr4xze75fk4jyqyy6g244tma --pool Default --agent demoVM2 --work $(C:\agent\run.cmd)\_work --acceptTeeEula --runAsService
   displayName: 'Configure and start agent'
 # - task: AzureCLI@2
