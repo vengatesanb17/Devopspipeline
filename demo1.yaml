@@ -8,5 +8,5 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'powershell.exe -ExecutionPolicy Bypass -File "D:\Agent\vengat.ps1"'
+    script: 'powershell.exe -ExecutionPolicy Bypass -File "C:\Users\vengatesan\Desktop\vengat.ps1"'
 
