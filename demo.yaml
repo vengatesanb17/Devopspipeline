@@ -11,4 +11,4 @@ steps:
     targetType: 'inline'
     script: |
       # Start the self-hosted agent
-      New-Item -Path 'D:\agent\Sample.txt' -ItemType Directory
+      New-Item -Path 'D:\agent\Sample' -ItemType Directory
