@@ -9,19 +9,11 @@ steps:
   inputs:
     azureSubscription: 'vengat-sc-devops'
     ScriptType: 'InlineScript'
-    Inline: |
-      $organizationUrl = "https://dev.azure.com/KVMF"
-            $poolName = "Default"
-            
-            $agentName = "demoVM3"
-            $agentWorkingDirectory = "C:\agents\$agentName"
-            
-            Invoke-WebRequest -Uri "$organizationUrl/_apis/distributedtask/agentpackage" -OutFile agent.zip
-            Expand-Archive agent.zip -DestinationPath $agentWorkingDirectory
-            
-            cd $agentWorkingDirectory
-            ./config.cmd --url $organizationUrl --pool $poolName --agent $agentName --work $agentWorkingDirectory --runAsService
-            
-            Start-Service vstsagent.$agentName
+    Inline: 'az extension add --name azure-devops'
     azurePowerShellVersion: 'LatestVersion'
-    
+
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: 'vengat-sc-devops'
+    ScriptType: 'InlineScript'
+    Inline: 'az pipelines agent start --name demoVM2 --url https://dev.azure.com/KVMF --auth pat --token 5inx5nnupf2wja7uxpjudrlmhbzrl5kbtvewoetzzeco2ggvguwa'
