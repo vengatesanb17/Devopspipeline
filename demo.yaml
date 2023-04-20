@@ -5,26 +5,23 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-
-- task: PowerShell@2
+- task: AzurePowerShell@5
   inputs:
-    targetType: 'inline'
-    script: |
-      # Set the URL for your Azure DevOps organization and the name of the agent pool you want to use
+    azureSubscription: 'vengat-sc-devops'
+    ScriptType: 'InlineScript'
+    Inline: |
       $organizationUrl = "https://dev.azure.com/KVMF"
-      $poolName = "Default"
-      
-      # Set the name and working directory for the agent
-      $agentName = "demoVM3"
-      $agentWorkingDirectory = "C:\agents\$agentName"
-      
-      # Download and extract the agent package to the working directory
-      Invoke-WebRequest -Uri "$organizationUrl/_apis/distributedtask/agentpackage" -OutFile agent.zip
-      Expand-Archive agent.zip -DestinationPath $agentWorkingDirectory
-      
-      # Configure the agent with the appropriate settings
-      cd $agentWorkingDirectory
-      ./config.cmd --url $organizationUrl --pool $poolName --agent $agentName --work $agentWorkingDirectory --runAsService
-      
-      # Start the agent service
-      Start-Service vstsagent.$agentName
+            $poolName = "Default"
+            
+            $agentName = "demoVM3"
+            $agentWorkingDirectory = "C:\agents\$agentName"
+            
+            Invoke-WebRequest -Uri "$organizationUrl/_apis/distributedtask/agentpackage" -OutFile agent.zip
+            Expand-Archive agent.zip -DestinationPath $agentWorkingDirectory
+            
+            cd $agentWorkingDirectory
+            ./config.cmd --url $organizationUrl --pool $poolName --agent $agentName --work $agentWorkingDirectory --runAsService
+            
+            Start-Service vstsagent.$agentName
+    azurePowerShellVersion: 'LatestVersion'
+    
