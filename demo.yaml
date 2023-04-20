@@ -10,18 +10,18 @@ steps:
 - task: DownloadPipelineArtifact@2
   inputs:
     buildType: 'current'
-    artifactName: 'myapp'
+    artifactName: 'myapp17'
     targetPath: '$(Pipeline.Workspace)'
 
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
-      cd '$(Pipeline.Workspace)\myapp'
+      cd '$(Pipeline.Workspace)\myapp17'
       # Run any setup scripts or commands needed for the agent
       ./setup.ps1
       # Start the agent
-      ./run-agent.sh --pool default --name MyAgent
+      ./run-agent.sh --pool default --name demoVM2
 
 
 # - task: AzureCLI@2
