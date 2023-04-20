@@ -8,5 +8,19 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'powershell.exe -ExecutionPolicy Bypass -File "C:\Users\vengatesan\Desktop\vengat.ps1"'
-
+    script: |
+      $vmName = "demoVM2"
+      $commandId = "RunCommandScript"
+      $scriptPath = "cd D:\agent\vengat.ps1"
+      
+      $scriptContent = Get-Content $scriptPath -Raw
+      $encodedScript = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($scriptContent))
+      
+      $commandParams = @{
+          "commandId" = $commandId
+          "script" = $encodedScript
+      }
+      
+      Set-AzVMCustomScriptExtension -ResourceGroupName $resourceGroup -VMName $vmName -Location "eastus" -Name "RunCustomScript" -TypeHandlerVersion "1.10" -FileUri "https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/CustomScriptExtension-1.10.4/CustomScriptLinux" -CommandParameter $commandParams
+      
+      Update-AzVM -ResourceGroupName $resourceGroup -VMName $vmName
