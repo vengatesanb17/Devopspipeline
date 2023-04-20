@@ -11,11 +11,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      cd '$(Pipeline.Workspace)\myapp17'
-      # Run any setup scripts or commands needed for the agent
-      ./setup.ps1
-      # Start the agent
+      ./setup.sh
       ./run-agent.sh --pool default --name demoVM2
+    displayName: 'Start Agent'
+    continueOnError: true
+      
 
 
 # - task: AzureCLI@2
