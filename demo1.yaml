@@ -7,8 +7,6 @@ pool:
 steps:
 - task: PowerShell@2
   inputs:
-    targetType: 'filePath'
-    filePath: 'D:\agent\run.cmd'
-    # arguments: '-param1 value1 -param2 value2'
-    # workingDirectory: 'D:\agent\vengat.ps1'
+    targetType: 'inline'
+    script: 'powershell.exe -ExecutionPolicy Bypass -File "D:\Agent\vengat.ps1"'
 
