@@ -5,12 +5,26 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- task: DownloadPipelineArtifact@2
-- script: |
-    cd $(Pipeline.Workspace)/agentconfig
-    .\config.cmd --unattended --replace --url https://dev.azure.com/KVMF --auth pat --token zbqyoi6jmmfmotq6zkpf4aatbi2cx5c4ndm2slz6rgmwkafp4rmq --pool Default --agent demoVM2 --acceptTeeEula --work $(C:\agent\run.cmd)
-  displayName: 'Configure agent'
-- script: |
-    cd $(Agent.HomeDirectory)
-    .\run.cmd
-  displayName: 'Run agent'
+-
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Set the URL for your Azure DevOps organization and the name of the agent pool you want to use
+      $organizationUrl = "https://dev.azure.com/KVMF"
+      $poolName = "Default"
+      
+      # Set the name and working directory for the agent
+      $agentName = "demoVM2"
+      $agentWorkingDirectory = "C:\agents\$agentName"
+      
+      # Download and extract the agent package to the working directory
+      Invoke-WebRequest -Uri "$organizationUrl/_apis/distributedtask/agentpackage" -OutFile agent.zip
+      Expand-Archive agent.zip -DestinationPath $agentWorkingDirectory
+      
+      # Configure the agent with the appropriate settings
+      cd $agentWorkingDirectory
+      ./config.cmd --url $organizationUrl --pool $poolName --agent $agentName --work $agentWorkingDirectory --runAsService
+      
+      # Start the agent service
+      Start-Service vstsagent.$agentName
