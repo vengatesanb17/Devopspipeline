@@ -15,7 +15,7 @@ steps:
       $poolName = "Default"
       
       # Set the name and working directory for the agent
-      $agentName = "demoVM2"
+      $agentName = "demoVM3"
       $agentWorkingDirectory = "C:\agents\$agentName"
       
       # Download and extract the agent package to the working directory
