@@ -10,5 +10,5 @@ steps:
     targetType: 'filePath'
     filePath: 'D:\agent\vengat.ps1'
     # arguments: '-param1 value1 -param2 value2'
-    workingDirectory: 'D:\agent\vengat.ps1'
+    # workingDirectory: 'D:\agent\vengat.ps1'
 
