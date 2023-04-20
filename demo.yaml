@@ -17,3 +17,4 @@ steps:
     azureSubscription: 'vengat-sc-devops'
     ScriptType: 'InlineScript'
     Inline: 'az pipelines agent start --name demoVM2 --url https://dev.azure.com/KVMF --auth pat --token 5inx5nnupf2wja7uxpjudrlmhbzrl5kbtvewoetzzeco2ggvguwa'
+    azurePowerShellVersion: 'LatestVersion'
