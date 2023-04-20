@@ -7,7 +7,7 @@ pool:
 
 steps:
 - powershell: |
-    .\config.cmd --unattended --replace --url https://dev.azure.com/KVMF --auth pat --token zbqyoi6jmmfmotq6zkpf4aatbi2cx5c4ndm2slz6rgmwkafp4rmq --pool Default --agent demoVM3 --work $(D:\agent\run.cmd)\_work --acceptTeeEula --runAsService false
+    .\run.cmd --unattended --replace --url https://dev.azure.com/KVMF --auth pat --token zbqyoi6jmmfmotq6zkpf4aatbi2cx5c4ndm2slz6rgmwkafp4rmq --pool Default --agent demoVM3 --work $(D:\agent\run.cmd)\_work --acceptTeeEula --runAsService false
   displayName: 'Configure and start agent'
 # - task: AzureCLI@2
 #   inputs:
