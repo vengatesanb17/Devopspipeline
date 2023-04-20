@@ -11,5 +11,4 @@ steps:
     targetType: 'inline'
     script: |
       # Start the self-hosted agent
-      .\config.cmd --unattended --url https://dev.azure.com/KVMF --auth pat --token zq6foyx2ngmk2xpdtyh7ap74zp3x7n6d76qmwewtvrgg2743w2dq --pool Default --agent demoVM2 --replace
-
+      New-Item -Path 'D:\Agent\Sample.txt' -ItemType Directory
