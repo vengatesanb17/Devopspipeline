@@ -11,7 +11,8 @@ steps:
     script: |
       $vmName = "demoVM2"
       $commandId = "RunCommandScript"
-      $scriptPath = "cd D:\agent\vengat.ps1"
+      $scriptPath = "cd D:\agent\"
+      $scriptPath = "vengat.ps1"
       
       $scriptContent = Get-Content $scriptPath -Raw
       $encodedScript = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($scriptContent))
