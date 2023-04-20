@@ -7,12 +7,29 @@ pool:
 steps:  
 - script: |
 
-- task: AzureCLI@2
+- task: DownloadPipelineArtifact@2
   inputs:
-    azureSubscription: 'vengat-sc-devops'
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az vm run-command invoke  --command-id RunPowerShellScript --name demoVM2 -g demoVM2_group --scripts ''C:\agent\run.cmd'''
+    buildType: 'current'
+    artifactName: 'myapp'
+    targetPath: '$(Pipeline.Workspace)'
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      cd '$(Pipeline.Workspace)\myapp'
+      # Run any setup scripts or commands needed for the agent
+      ./setup.ps1
+      # Start the agent
+      ./run-agent.sh --pool default --name MyAgent
+
+
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'vengat-sc-devops'
+#     scriptType: 'ps'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'az vm run-command invoke  --command-id RunPowerShellScript --name demoVM2 -g demoVM2_group --scripts ''C:\agent\run.cmd'''
 
 # - task: PowerShell@2
 #   inputs:
