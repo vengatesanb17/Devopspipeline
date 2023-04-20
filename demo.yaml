@@ -7,12 +7,6 @@ pool:
 steps:  
 - script: |
 
-- task: DownloadPipelineArtifact@2
-  inputs:
-    buildType: 'current'
-    artifactName: 'myapp17'
-    targetPath: '$(Pipeline.Workspace)'
-
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
