@@ -17,7 +17,3 @@ steps:
           "commandId" = $commandId
           "script" = $scriptPath
       }
-      
-      Set-AzVMCustomScriptExtension -ResourceGroupName $resourceGroup -VMName $vmName -Location "eastus" -Name "RunCustomScript" -TypeHandlerVersion "1.10" -FileUri "https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/CustomScriptExtension-1.10.4/CustomScriptLinux" -CommandParameter $commandParams
-      
-      Update-AzVM -ResourceGroupName $resourceGroup -VMName $vmName
