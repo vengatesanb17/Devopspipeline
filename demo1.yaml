@@ -11,9 +11,3 @@ steps:
     script: |
       $vmName = "demoVM2"
       $commandId = "RunCommandScript"
-      $scriptPath = "cd D:\agent\vengat.ps1"
-      
-      $commandParams = @{
-          "commandId" = $commandId
-          "script" = $scriptPath
-      }
