@@ -11,3 +11,4 @@ steps:
     script: |
       $vmName = "demoVM2"
       $commandId = "RunCommandScript"
+      # 
